@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GymWize</title>
     <style>
+        /* Previous styles remain the same until shorts-grid */
         * {
             margin: 0;
             padding: 0;
@@ -22,6 +23,80 @@
             color: white;
             -ms-overflow-style: none;
             scrollbar-width: none;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .menu-icon {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1001;
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .menu-icon span {
+            width: 100%;
+            height: 2px;
+            background-color: white;
+            transition: 0.3s;
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100vh;
+            background-color: rgba(128, 128, 128, 0.95);
+            z-index: 1000;
+            transition: 0.3s;
+            padding-top: 20px;
+        }
+
+        .side-menu.active {
+            left: 0;
+        }
+
+        .menu-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .menu-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .gym-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .gym-phone {
+            font-size: 14px;
+            color: white;
+        }
+
+        .menu-item {
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            display: block;
+            font-size: 18px;
+            text-align: left;
         }
 
         .loading-screen {
@@ -54,8 +129,9 @@
             background: black;
             padding: 10px 20px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
+            gap: 20px;
         }
 
         .gymwize-logo {
@@ -101,6 +177,7 @@
             padding: 20px;
             opacity: 0;
             animation: fadeIn 1s ease-out 2.5s forwards;
+            text-align: center;
         }
 
         .header {
@@ -131,20 +208,21 @@
 
         .machine-title {
             text-align: center;
-            margin: 15px 0;
+            margin: 15px 0 5px 0;
         }
 
         .machine-image {
             width: 100%;
             height: 200px;
             border-radius: 15px;
-            margin: 20px 0;
+            margin: 10px 0;
             object-fit: cover;
         }
 
         .description {
             margin: 20px 0;
             line-height: 1.6;
+            text-align: justify;
         }
 
         .exercises-section h2 {
@@ -179,7 +257,7 @@
             padding: 20px;
             border: 2px solid white;
             border-radius: 10px;
-            margin: 15px 0 25px 0;  /* Added spacing here */
+            margin: 15px 0 25px 0;
         }
 
         .exercise-content.active {
@@ -202,6 +280,7 @@
         .exercise-note {
             margin: 20px 0;
             line-height: 1.6;
+            text-align: justify;
         }
 
         .video-section {
@@ -242,27 +321,37 @@
         }
 
         .video-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
 
+        /* Updated shorts-grid styles */
         .shorts-grid {
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
 
-        .video-thumbnail {
+        .video-container {
             width: 100%;
-            height: 150px;
-            border-radius: 10px;
-            object-fit: cover;
+            margin-bottom: 20px;
         }
 
-        .shorts-thumbnail {
+        .video-container iframe {
             width: 100%;
-            height: 200px;
+            height: 315px;
             border-radius: 10px;
-            object-fit: cover;
+        }
+
+        .shorts-container {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 20px;
+        }
+
+        .shorts-container iframe {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
         }
 
         .social-icons {
@@ -295,25 +384,40 @@
                 height: 180px;
             }
 
-            .video-thumbnail {
-                height: 120px;
+            .video-container iframe {
+                height: 250px;
             }
 
-            .shorts-thumbnail {
-                height: 160px;
+            .shorts-container {
+                height: 300px;
             }
 
             .loading-logo {
                 height: 60px;
             }
-
-            .shorts-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
     </style>
 </head>
 <body>
+    <!-- Rest of the HTML structure remains the same until the shorts container -->
+    <div class="menu-icon" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="side-menu">
+        <div class="menu-header">
+            <img src="assets/goldgymlogo.png" alt="Gym Logo" class="menu-logo">
+            <div class="gym-name">Gold gym</div>
+            <div class="gym-phone">+91-1234567890</div>
+        </div>
+        <a href="#" class="menu-item">warm-up</a>
+        <a href="#" class="menu-item">Stretching</a>
+        <a href="#" class="menu-item">gym-Offers</a>
+        <a href="#" class="menu-item">About gym</a>
+    </div>
+
     <div class="loading-screen">
         <div class="logo-container">
             <img src="assets/logo.png" alt="GymWize Logo" class="loading-logo">
@@ -322,10 +426,12 @@
 
     <div class="top-logo-section">
         <img src="assets/logo.png" alt="GymWize Logo" class="gymwize-logo">
-        <img src="assets/logo.png" alt="Partner Gym Logo" class="partner-logo">
+        <img src="assets/goldgymlogo.png" alt="Partner Gym Logo" class="partner-logo">
     </div>
     <div class="white-line"></div>
+
     <div class="main-content">
+        <!-- Previous content remains the same -->
         <div class="header">
             <h1>About Machine</h1>
             <div class="info-icon">i</div>
@@ -345,6 +451,7 @@
                 Excercises performed on this machine
             </h2>
             
+            <!-- Example of updated shorts container structure (repeat for other exercise levels) -->
             <button class="exercise-button">
                 Beginner
                 <span class="arrow">▼</span>
@@ -365,19 +472,21 @@
                 <div class="video-section">
                     <h3>Follow Guide</h3>
                     <div class="content-tabs">
-                        <div class="content-tab active" data-tab="videos">Videos</div>
-                        <div class="content-tab" data-tab="shorts">Shorts</div>
+                        <div class="content-tab" data-tab="videos">Videos</div>
+                        <div class="content-tab active" data-tab="shorts">Shorts</div>
                     </div>
-                    <div class="content-grid video-grid active">
-                        <img src="/api/placeholder/280/150" alt="Exercise Video 1" class="video-thumbnail">
-                        <img src="/api/placeholder/280/150" alt="Exercise Video 2" class="video-thumbnail">
-                        <img src="/api/placeholder/280/150" alt="Exercise Video 3" class="video-thumbnail">
-                        <img src="/api/placeholder/280/150" alt="Exercise Video 4" class="video-thumbnail">
+                    <div class="content-grid video-grid">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/2dT6UA-3RFo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
                     </div>
-                    <div class="content-grid shorts-grid">
-                        <img src="/api/placeholder/120/200" alt="Exercise Short 1" class="shorts-thumbnail">
-                        <img src="/api/placeholder/120/200" alt="Exercise Short 2" class="shorts-thumbnail">
-                        <img src="/api/placeholder/120/200" alt="Exercise Short 3" class="shorts-thumbnail">
+                    <div class="content-grid shorts-grid active">
+                        <div class="shorts-container">
+                            <iframe src="https://www.youtube.com/embed/jFVXIWOwpzA" title="YouTube shorts player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                        <div class="shorts-container">
+                            <iframe src="https://www.youtube.com/embed/jFVXIWOwpzA" title="YouTube shorts player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -392,27 +501,31 @@
                     <div class="info-icon">i</div>
                 </div>
                 <p class="exercise-note">
-                    For intermediate users, focus on building endurance and introducing interval training. 
-                    Start incorporating moderate inclines and varying speeds. Work on maintaining proper form 
-                    while gradually increasing workout duration and intensity. Mix walking and jogging intervals 
-                    to improve cardiovascular fitness.
+                    Starting with a treadmill is a great way to improve your fitness! As a beginner, 
+                    it's important to take it slow and listen to your body. Begin with a comfortable 
+                    walking speed and focus on maintaining good posture—stand tall with your 
+                    shoulders relaxed and your arms swinging freely. Always start with short sessions
+                    of around 10-15 minutes and gradually increase your duration to build up your 
+                    strength and endurance. Don't rush to increase the speed or incline too soon.
                 </p>
                 <div class="video-section">
                     <h3>Follow Guide</h3>
                     <div class="content-tabs">
-                        <div class="content-tab active" data-tab="videos">Videos</div>
-                        <div class="content-tab" data-tab="shorts">Shorts</div>
+                        <div class="content-tab" data-tab="videos">Videos</div>
+                        <div class="content-tab active" data-tab="shorts">Shorts</div>
                     </div>
-                    <div class="content-grid video-grid active">
-                        <img src="/api/placeholder/280/150" alt="Exercise Video 1" class="video-thumbnail">
-                        <img src="/api/placeholder/280/150" alt="Exercise Video 2" class="video-thumbnail">
-                        <img src="/api/placeholder/280/150" alt="Exercise Video 3" class="video-thumbnail">
-                        <img src="/api/placeholder/280/150" alt="Exercise Video 4" class="video-thumbnail">
+                    <div class="content-grid video-grid">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/2dT6UA-3RFo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
                     </div>
-                    <div class="content-grid shorts-grid">
-                        <img src="/api/placeholder/120/200" alt="Exercise Short 1" class="shorts-thumbnail">
-                        <img src="/api/placeholder/120/200" alt="Exercise Short 2" class="shorts-thumbnail">
-                        <img src="/api/placeholder/120/200" alt="Exercise Short 3" class="shorts-thumbnail">
+                    <div class="content-grid shorts-grid active">
+                        <div class="shorts-container">
+                            <iframe src="https://www.youtube.com/embed/jFVXIWOwpzA" title="YouTube shorts player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                        <div class="shorts-container">
+                            <iframe src="https://www.youtube.com/embed/jFVXIWOwpzA" title="YouTube shorts player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -427,30 +540,34 @@
                     <div class="info-icon">i</div>
                 </div>
                 <p class="exercise-note">
-                    Pro level workouts involve complex interval patterns, maximum incline 
-                    challenges, and endurance training. Focus on achieving specific performance 
-                    goals while maintaining perfect form at high speeds and steep inclines.
+                    Starting with a treadmill is a great way to improve your fitness! As a beginner, 
+                    it's important to take it slow and listen to your body. Begin with a comfortable 
+                    walking speed and focus on maintaining good posture—stand tall with your 
+                    shoulders relaxed and your arms swinging freely. Always start with short sessions
+                    of around 10-15 minutes and gradually increase your duration to build up your 
+                    strength and endurance. Don't rush to increase the speed or incline too soon.
                 </p>
                 <div class="video-section">
                     <h3>Follow Guide</h3>
                     <div class="content-tabs">
-                        <div class="content-tab active" data-tab="videos">Videos</div>
-                        <div class="content-tab" data-tab="shorts">Shorts</div>
+                        <div class="content-tab" data-tab="videos">Videos</div>
+                        <div class="content-tab active" data-tab="shorts">Shorts</div>
                     </div>
-                    <div class="content-grid video-grid active">
-                        <img src="/api/placeholder/280/150" alt="Exercise Video 1" class="video-thumbnail">
-                        <img src="/api/placeholder/280/150" alt="Exercise Video 2" class="video-thumbnail">
-                        <img src="/api/placeholder/280/150" alt="Exercise Video 3" class="video-thumbnail">
-                        <img src="/api/placeholder/280/150" alt="Exercise Video 4" class="video-thumbnail">
+                    <div class="content-grid video-grid">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/2dT6UA-3RFo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
                     </div>
-                    <div class="content-grid shorts-grid">
-                        <img src="/api/placeholder/120/200" alt="Exercise Short 1" class="shorts-thumbnail">
-                        <img src="/api/placeholder/120/200" alt="Exercise Short 2" class="shorts-thumbnail">
-                        <img src="/api/placeholder/120/200" alt="Exercise Short 3" class="shorts-thumbnail">
+                    <div class="content-grid shorts-grid active">
+                        <div class="shorts-container">
+                            <iframe src="https://www.youtube.com/embed/jFVXIWOwpzA" title="YouTube shorts player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                        <div class="shorts-container">
+                            <iframe src="https://www.youtube.com/embed/jFVXIWOwpzA" title="YouTube shorts player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         
         <div class="social-icons">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/640px-Google_%22G%22_logo.svg.png" alt="Google Icon">
@@ -459,6 +576,12 @@
     </div>
 
     <script>
+        function toggleMenu() {
+            document.querySelector('.side-menu').classList.toggle('active');
+            const spans = document.querySelectorAll('.menu-icon span');
+            spans.forEach(span => span.classList.toggle('active'));
+        }
+
         setTimeout(() => {
             document.querySelector('.loading-screen').style.display = 'none';
         }, 3500);
@@ -496,6 +619,14 @@
                     targetGrid.classList.add('active');
                 });
             });
+        });
+
+        document.addEventListener('click', (e) => {
+            const sideMenu = document.querySelector('.side-menu');
+            const menuIcon = document.querySelector('.menu-icon');
+            if (!sideMenu.contains(e.target) && !menuIcon.contains(e.target) && sideMenu.classList.contains('active')) {
+                toggleMenu();
+            }
         });
     </script>
 </body>
