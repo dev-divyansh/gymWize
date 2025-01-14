@@ -95,7 +95,7 @@
         text-decoration: none;
         display: block;
         font-size: 18px;
-        text-align: center; /* Updated: Center align menu items */
+        text-align: center;
       }
 
       .loading-screen {
@@ -130,12 +130,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 20px;
-        position: fixed; /* Add this */
-        top: 0; /* Add this */
-        left: 0; /* Add this */
-        right: 0; /* Add this */
-        z-index: 999; /* Add this */
+        gap: 10px; /* Reduced from 20px to 10px */
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
       }
 
       .gymwize-logo {
@@ -193,8 +193,9 @@
       }
 
       .header h1 {
-        font-size: 24px;
+        font-size: 32px; /* Increased from 24px */
         text-align: center;
+        font-weight: 900; /* Made extra bold */
       }
 
       .info-icon {
@@ -212,24 +213,23 @@
 
       .machine-title {
         text-align: center;
-        margin: 15px 0 2px 0; /* Updated: Reduced bottom margin */
+        margin: 15px 0 2px 0;
       }
 
       .machine-image {
         width: 100%;
         height: 200px;
         border-radius: 15px;
-        margin: 5px 0; /* Updated: Reduced top and bottom margin */
+        margin: 5px 0;
         object-fit: cover;
       }
 
       .description {
-        margin: 5px 0; /* Updated: Reduced top and bottom margin */
+        margin: 5px 0;
         line-height: 1.6;
         text-align: justify;
       }
 
-      /* Rest of the styles remain the same */
       .exercises-section h2 {
         margin: 20px 0;
         text-align: center;
@@ -244,6 +244,7 @@
         border-radius: 10px;
         color: white;
         font-size: 16px;
+        font-weight: bold; /* Made bold */
         cursor: pointer;
         display: flex;
         justify-content: center;
@@ -263,6 +264,7 @@
         border: 2px solid white;
         border-radius: 10px;
         margin: 15px 0 25px 0;
+        font-weight: normal; /* Ensure content is not bold */
       }
 
       .exercise-content.active {
@@ -275,6 +277,10 @@
         align-items: center;
         margin-bottom: 20px;
         position: relative;
+      }
+
+      .exercise-header h3 {
+        font-weight: normal; /* Ensure header is not bold */
       }
 
       .exercise-header .info-icon {
@@ -295,6 +301,7 @@
       .video-section h3 {
         text-align: center;
         margin-bottom: 20px;
+        font-weight: normal; /* Ensure video section header is not bold */
       }
 
       .content-tabs {
@@ -381,7 +388,7 @@
         }
 
         .header h1 {
-          font-size: 20px;
+          font-size: 28px; /* Adjusted for mobile but still larger than original */
         }
 
         .machine-image {
@@ -429,11 +436,7 @@
 
     <div class="top-logo-section">
       <img src="assets/logo.png" alt="GymWize Logo" class="gymwize-logo" />
-      <img
-        src="assets/goldgymlogo.png"
-        alt="Partner Gym Logo"
-        class="partner-logo"
-      />
+      <img src="assets/goldgymlogo.png" alt="Partner Gym Logo" class="partner-logo" />
     </div>
     <div class="white-line"></div>
 
@@ -443,11 +446,7 @@
         <div class="info-icon">i</div>
       </div>
       <h2 class="machine-title">Treadmill</h2>
-      <img
-        src="assets/other/treadmill.jpeg"
-        alt="Treadmill"
-        class="machine-image"
-      />
+      <img src="assets/other/treadmill.jpeg" alt="Treadmill" class="machine-image" />
       <p class="description">
         A treadmill is a popular exercise machine designed for walking, jogging,
         or running indoors. It features a moving belt that simulates outdoor
@@ -459,7 +458,6 @@
       <div class="exercises-section">
         <h2>Excercises performed on this machine</h2>
 
-        <!-- Exercise buttons and content sections remain the same -->
         <button class="exercise-button">
           Beginner
           <span class="arrow">▼</span>
