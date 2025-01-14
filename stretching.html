@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GymWize</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      ::-webkit-scrollbar {
+        display: none;
+      }
+
+      body {
+        background-color: #000;
+        min-height: 100vh;
+        color: white;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      .gym-name {
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+      }
+
+      .gym-phone {
+        font-size: 14px;
+        color: white;
+      }
+
+      .menu-item {
+        padding: 15px 20px;
+        color: white;
+        text-decoration: none;
+        display: block;
+        font-size: 18px;
+        text-align: center;
+      }
+
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        animation: fadeOut 1.5s ease-out 2s forwards;
+      }
+
+      .logo-container {
+        text-align: center;
+        opacity: 0;
+        transform: scale(0.5);
+        animation: fadeIn 1.5s ease-out forwards;
+      }
+
+      .loading-logo {
+        height: 80px;
+        object-fit: contain;
+      }
+
+      .top-logo-section {
+        background: black;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+      }
+
+      .gymwize-logo {
+        height: 30px;
+        object-fit: contain;
+      }
+
+      .partner-logo {
+        height: 30px;
+        object-fit: contain;
+      }
+
+      .white-line {
+        height: 1px;
+        background: white;
+        width: 100%;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          transform: scale(0.5);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes fadeOut {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+
+      .main-content {
+        max-width: 600px;
+        margin: 70px auto 0;
+        padding: 20px;
+        opacity: 0;
+        animation: fadeIn 1s ease-out 2.5s forwards;
+        text-align: center;
+      }
+
+      .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0;
+        position: relative;
+      }
+
+      .header h1 {
+        font-size: 32px;
+        text-align: center;
+        font-weight: 900;
+      }
+
+      .machine-image {
+        width: 100%;
+        height: 200px;
+        border-radius: 15px;
+        margin: 5px 0;
+        object-fit: cover;
+      }
+
+      .description {
+        margin: 5px 0;
+        line-height: 1.6;
+        text-align: justify;
+      }
+
+      .video-section {
+        margin: 20px 0;
+      }
+
+      .video-section h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .shorts-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .shorts-container {
+        width: 100%;
+        height: 400px;
+        margin-bottom: 20px;
+      }
+
+      .shorts-container iframe {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+      }
+
+      .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 30px;
+      }
+
+      .social-icons img {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+      }
+
+      @media (max-width: 480px) {
+        .main-content {
+          padding: 15px;
+        }
+
+        .header h1 {
+          font-size: 28px;
+        }
+
+        .machine-image {
+          height: 180px;
+        }
+
+        .shorts-container {
+          height: 300px;
+        }
+
+        .loading-logo {
+          height: 60px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loading-screen">
+      <div class="logo-container">
+        <img src="assets/logo.png" alt="GymWize Logo" class="loading-logo" />
+      </div>
+    </div>
+
+    <div class="top-logo-section">
+      <img src="assets/logo.png" alt="GymWize Logo" class="gymwize-logo" />
+    </div>
+    <div class="main-content">
+      <div class="header">
+        <h1>Stretching Guide</h1>
+      </div>
+      <img
+        src="assets/other/stretching.jpeg"
+        alt="Stretching"
+        class="machine-image"
+      />
+      <p class="description">
+        Stretching exercises are light physical activities performed before more
+        intense exercise or sports. They help prepare the body by gradually
+        increasing heart rate, improving flexibility, and enhancing circulation
+        to muscles. Typical stretching exercises include gentle movements like
+        jogging, stretching, and dynamic motions that target the muscles to be
+        used during the main activity. Proper stretching reduces the risk of
+        injury and improves overall performance.
+      </p>
+
+      <div class="video-section">
+        <h2>Follow Guide</h2>
+        <div class="shorts-grid">
+          <div class="shorts-container">
+            <iframe
+              src="https://www.youtube.com/embed/jFVXIWOwpzA"
+              title="YouTube shorts player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="shorts-container">
+            <iframe
+              src="https://www.youtube.com/embed/jFVXIWOwpzA"
+              title="YouTube shorts player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="social-icons">
+        <a href="mailto:divyansh3250@outlook.com">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Mail_%28iOS%29.svg/1024px-Mail_%28iOS%29.svg.png"
+            alt="Email Icon"
+          />
+        </a>
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1200px-Instagram_logo_2016.svg.png"
+          alt="Instagram Icon"
+        />
+      </div>
+    </div>
+  </body>
+</html>
